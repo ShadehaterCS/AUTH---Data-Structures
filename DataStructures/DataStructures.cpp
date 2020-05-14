@@ -1,9 +1,8 @@
-// DataStructures.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 
 int main()
 {
-    
+    std::cout << "Hello everyone oh my god I lost everything" << std::endl;
+
+    return 0;
 }
