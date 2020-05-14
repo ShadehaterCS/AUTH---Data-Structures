@@ -147,7 +147,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Capsule.cpp" />
+    <ClCompile Include="CVector.cpp" />
     <ClCompile Include="DataStructures.cpp" />
+    <ClCompile Include="HashTable.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Capsule.h" />
+    <ClInclude Include="CVector.h" />
+    <ClInclude Include="HashTable.h" />
+    <ClInclude Include="UtilityFunctions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
