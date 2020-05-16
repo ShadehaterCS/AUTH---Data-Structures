@@ -5,6 +5,7 @@
 #include "HashTable.h"
 #include "CVector.h"
 #include "CVector.h"
+#include <algorithm>
 
 class UtilityFunctions
 {

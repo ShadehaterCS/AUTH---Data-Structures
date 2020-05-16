@@ -15,9 +15,10 @@ public:
 
 	HashTable();
 	HashTable(int size);
+	~HashTable();
 	long long hash(string s);
 
-	bool addWord(string s);
+	bool insert(string s);
 	bool resizeTable();
 };
 
