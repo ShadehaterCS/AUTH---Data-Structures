@@ -8,27 +8,20 @@ class Capsule
 private:
 	string word;
 	int num;
-	bool open;
 
 public:
 	Capsule() {
-		open = true;
 		word = "";
 		num = 0;
 	}
-	Capsule(string word) {
-		open = false;
+	Capsule(string word, int shows) {
 		this->word = word;
-		num = 1; //Since it's the first time it is seen
-		cout <<"Created capsule" <<endl;
+		num = shows;
 	}
-	~Capsule(){}
 
-	string getWord() { return word; }
 	void setWord(string s) { word = s; }
 	void setNumber(int n) { num = n; }
 	void increment() { num++; }
-	bool getStatus() { return open; }
+
 	int getTimesFound() { return num; }
 };
-

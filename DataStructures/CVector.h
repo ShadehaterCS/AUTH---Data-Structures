@@ -8,7 +8,7 @@
 //STL is bad and we can't use vector<T> okkokkok
 
 using namespace std;
-class CVector 
+class CVector
 {
 private:
 	string* arr;
@@ -27,11 +27,10 @@ public:
 		char c = ' ';
 		for (auto n : t) {
 			if (n != c) buffer += n;
-			else if (n == c && buffer != ""){
+			else if (n == c && buffer != "") {
 				addWord(buffer);
 				buffer = "";
 			}
-
 		}
 		if (buffer != "" && buffer != " ")
 			addWord(buffer);
@@ -46,11 +45,10 @@ public:
 		return false;
 	}
 	bool hasNext() {
-		return (current <= length);	
+		return (current <= length);
 	}
 	string getWord() {
 		return arr[current++];
 	}
 	int getLength() { return length; }
 };
-
