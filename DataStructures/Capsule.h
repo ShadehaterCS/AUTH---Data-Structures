@@ -28,6 +28,7 @@ public:
 	void setWord(string s) { word = s; }
 	void setNumber(int n) { num = n; }
 	void increment() { num++; }
+
 	bool getStatus() { return open; }
 	int getTimesFound() { return num; }
 };
