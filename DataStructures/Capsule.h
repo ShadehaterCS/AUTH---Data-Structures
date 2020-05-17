@@ -6,9 +6,9 @@ using namespace std;
 class Capsule
 {
 private:
-	string word;
-	int num;
-	bool open;
+	string word; //The word
+	int num; //Number of times the word is found in the text
+	bool open; //Marks if the capsule was initialized or created
 
 public:
 	Capsule() {
@@ -20,9 +20,11 @@ public:
 		open = false;
 		this->word = word;
 		num = 1; //Since it's the first time it is seen
-		cout <<"Created capsule" <<endl;
 	}
-	~Capsule(){}
+
+	~Capsule() {
+		;
+	}
 
 	string getWord() { return word; }
 	void setWord(string s) { word = s; }
@@ -31,5 +33,8 @@ public:
 
 	bool getStatus() { return open; }
 	int getTimesFound() { return num; }
+	void show() {
+		cout << word << " " << num << " " << open << endl;
+	}
 };
 

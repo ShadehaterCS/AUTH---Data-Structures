@@ -2,10 +2,10 @@
 #include <string>
 #include <iostream>
 #include <sstream> //std::stringstream
+
 #include "HashTable.h"
 #include "CVector.h"
 #include "CVector.h"
-#include <algorithm>
 
 class UtilityFunctions
 {
@@ -14,10 +14,13 @@ class UtilityFunctions
 };
 
 inline static std::string removePunctuation(std::string linestr) {
-    linestr.erase(std::remove_if(
-        linestr.begin(), linestr.end(),
-        [](unsigned char c) { return std::ispunct(c); }
-    ), linestr.end());
+    for (int i = 0, len = linestr.size(); i < len; i++)
+    {
+        // check whether parsing character is punctuation or not 
+        unsigned char c = linestr[i];
+        if (ispunct(c))
+            linestr[i] = ' ';
+    }
     return linestr;
 }
 
@@ -27,6 +30,7 @@ inline void testHashTable() {
     std::cout << "String: " << b << " - hash: ";
     std::cout << a.hash(b) << std::endl;
 }
+
 
 
 

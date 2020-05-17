@@ -1,14 +1,17 @@
 #include "HashTable.h"
 #include "Capsule.h"
+
 HashTable::HashTable()
 {
     tableSize = 1000;
     table = new Capsule[tableSize];
+    loadFactor = 0;
 }
 HashTable::HashTable(int size)
 {
     tableSize = size;
     table = new Capsule[tableSize];
+    loadFactor = 0;
 }
 HashTable::~HashTable(){
     delete[] table;
@@ -28,24 +31,29 @@ long long HashTable::hash(string s)
     return abs(hash_value % tableSize);
 }
 
+bool HashTable::exists()
+{
+    return false;
+}
+
 bool HashTable::insert(string word)
-{ //add exception handling
+{
     long long hashValue = hash(word);
     long quadraticProbe;
-    for (int i=0; i<100; i++){ //Quadratic probing to avoid clustering
+    for (int i=0; i<10; i++){ //Quadratic probing to avoid clustering
         quadraticProbe = hashValue + i*i;
-        cout << "Probed at: " <<quadraticProbe <<endl;
         if (table[quadraticProbe].getStatus()){
             table[quadraticProbe] = Capsule(word);
+            uniqueWords++;
+            operationsDone++;       
             return true;
         }
         else
             if (table[quadraticProbe].getWord() == word){
                 table[quadraticProbe].increment();
-                cout << "Found word: " <<word << " this many times: "<<table[quadraticProbe].getTimesFound();
+                operationsDone++;
                 return true;
             }
     }
-    //Adding a comment to test something why doesn't this work
     return false;
 }

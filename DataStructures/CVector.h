@@ -17,8 +17,8 @@ private:
 	int current;
 public:
 	CVector() {
-		arr = new string[20];
-		size = 20;
+		arr = new string[50];
+		size = 50;
 		length = current = 0;
 	}
 
@@ -49,8 +49,17 @@ public:
 		return (current <= length);	
 	}
 	string getWord() {
-		return arr[current++];
+		string temp = arr[current];
+		current++;
+		return temp;
 	}
 	int getLength() { return length; }
+
+	void clear() {
+		delete[] arr;
+		arr = new string[50];
+		current = length = 0;
+		
+	}
 };
 
