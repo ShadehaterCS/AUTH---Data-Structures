@@ -46,6 +46,6 @@ bool HashTable::insert(string word)
                 return true;
             }
     }
-    //Adding a comment to test something
+    //Adding a comment to test something why doesn't this work
     return false;
 }
