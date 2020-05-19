@@ -61,5 +61,6 @@ public:
 		current = length = 0;
 		
 	}
+
 };
 

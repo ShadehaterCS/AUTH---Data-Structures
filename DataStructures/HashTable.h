@@ -10,7 +10,7 @@ private :
 	int tableSize;
 	double loadFactor;
 	Capsule* table;
-	void calculateLoadFactor();
+	void calculateLoadFactor() { loadFactor = uniqueWords / tableSize; }
 
 public:
 	int uniqueWords;
@@ -24,6 +24,11 @@ public:
 	bool insert(string s);
 	bool resizeTable();
 
+	Capsule find(string word);
+
+	bool getAndFindRandomWords(string* allWords, int words) {
+		return true;
+	}
 	void show() {
 		std::cout << "Unique words: " << uniqueWords << endl;
 		std::cout << "Total words: " << operationsDone<< endl;

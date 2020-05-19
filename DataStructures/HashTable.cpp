@@ -27,7 +27,6 @@ long long HashTable::hash(string s)
         hash_value = (hash_value + (c - 'a' + 1) * p_pow) % m;
         p_pow = (p_pow * p);
     }
-    
     return abs(hash_value % tableSize);
 }
 
@@ -45,15 +44,31 @@ bool HashTable::insert(string word)
         if (table[quadraticProbe].getStatus()){
             table[quadraticProbe] = Capsule(word);
             uniqueWords++;
-            operationsDone++;       
+            operationsDone++;
+            calculateLoadFactor();
             return true;
         }
         else
             if (table[quadraticProbe].getWord() == word){
                 table[quadraticProbe].increment();
                 operationsDone++;
+                calculateLoadFactor();
                 return true;
             }
     }
     return false;
+}
+
+Capsule HashTable::find(string word)
+{
+    long long hashValue = hash(word);
+    long quadraticProbe;
+    for (int i = 0; i < 10; i++) { //Quadratic probing to avoid clustering
+        quadraticProbe = hashValue + i * i;
+        if (!table[quadraticProbe].getStatus()) { //Will return false if it's occupied
+            if (table[quadraticProbe].getWord() == word)
+                return table[quadraticProbe];
+        }
+    }
+    return Capsule();
 }

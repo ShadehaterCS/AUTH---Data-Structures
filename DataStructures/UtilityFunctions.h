@@ -25,10 +25,17 @@ inline static std::string removePunctuation(std::string linestr) {
 }
 
 inline void testHashTable() {
-    HashTable a(10000);
+    HashTable hashtable(10000);
     string b = "liakoshotmail.com";
     std::cout << "String: " << b << " - hash: ";
-    std::cout << a.hash(b) << std::endl;
+    std::cout << hashtable.hash(b) << std::endl;
+
+    string tester;
+    cout << "Type a word to find: ";
+    cin >> tester;
+    Capsule a = hashtable.find(tester);
+    if (!a.getStatus())
+        cout << "Found word '" << a.getWord() << "' and it was seen " << a.getTimesFound() << " times" << endl;
 }
 
 
