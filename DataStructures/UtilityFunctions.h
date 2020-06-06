@@ -6,11 +6,12 @@
 #include "HashTable.h"
 #include "CVector.h"
 #include "CVector.h"
-
+#include "BinaryTree.h"
 class UtilityFunctions
 {
     static std::string removePunctuation(std::string linestr);
-    static void testHashTable();
+    static void testHashTable(HashTable* hashtable);
+    static void testBST(BinaryTree* tree);
 };
 
 inline static std::string removePunctuation(std::string linestr) {
@@ -24,18 +25,12 @@ inline static std::string removePunctuation(std::string linestr) {
     return linestr;
 }
 
-inline void testHashTable() {
-    HashTable hashtable(10000);
-    string b = "liakoshotmail.com";
-    std::cout << "String: " << b << " - hash: ";
-    std::cout << hashtable.hash(b) << std::endl;
+inline static void testHashTable(HashTable* table) {
+    
+}
 
-    string tester;
-    cout << "Type a word to find: ";
-    cin >> tester;
-    Capsule a = hashtable.find(tester);
-    if (!a.getStatus())
-        cout << "Found word '" << a.getWord() << "' and it was seen " << a.getTimesFound() << " times" << endl;
+inline static void testBST(BinaryTree* tree) {
+
 }
 
 

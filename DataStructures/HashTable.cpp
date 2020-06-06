@@ -59,7 +59,7 @@ bool HashTable::insert(string word)
     return false;
 }
 
-Capsule HashTable::find(string word)
+Capsule HashTable::find(string word) //If it exists, returns the capsule object containing the word the program needs.
 {
     long long hashValue = hash(word);
     long quadraticProbe;
