@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Capsule.h"
+using namespace std;
 class Node
 {
 public:
@@ -9,7 +10,7 @@ public:
 	Node* right;
 	Node* parent;
 
-	std::string getKey() { return key.getWord(); }
+	string getKey() { return key.getWord(); }
 	Capsule getCapsule() { return key; }
 	Node() {
 		left = nullptr;
@@ -17,7 +18,7 @@ public:
 		parent = nullptr;
 	}
 
-	Node(std::string word) {
+	Node(string word) {
 		key = Capsule(word);
 		left = nullptr;
 		right = nullptr;

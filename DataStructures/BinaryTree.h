@@ -25,11 +25,11 @@ public:
 	bool isEmpty() { return (root == nullptr); }
 
 	Node* getRoot() { return root; }
-	Node* find();
 
 	bool insert(string word);
 	bool insert(Node* n, string word);
-
+	bool find(string word);
+	bool find(Node* n, string *word);
 	void printInOrder();
 };
 
