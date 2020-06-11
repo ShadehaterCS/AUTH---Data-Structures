@@ -11,7 +11,7 @@ HashTable::HashTable(int size)
 {
     tableSize = size;
     table = new Capsule[tableSize];
-    loadFactor = 0;
+    loadFactor = operationsDone = 0;
 }
 HashTable::~HashTable(){
     delete[] table;
@@ -19,8 +19,8 @@ HashTable::~HashTable(){
 //Hash function that hashes a string char by char
 long long HashTable::hash(string s)
 {
-    const int p = 31;
-    const int m = 1e9 + 9;
+    const int p = 31; //Prime Number
+    const int m = 1e9 + 9; //Large Prime Number
     long long hash_value = 0;
     long long p_pow = 1;
     for (char c : s) {
@@ -39,7 +39,7 @@ bool HashTable::insert(string word)
 {
     long long hashValue = hash(word);
     long quadraticProbe;
-    for (int i=0; i<10; i++){ //Quadratic probing to avoid clustering
+    for (int i=0; i<15; i++){ //Quadratic probing to avoid clustering
         quadraticProbe = hashValue + i*i;
         if (table[quadraticProbe].getStatus()){
             table[quadraticProbe] = Capsule(word);
@@ -63,7 +63,7 @@ Capsule HashTable::find(string word) //If it exists, returns the capsule object 
 {
     long long hashValue = hash(word);
     long quadraticProbe;
-    for (int i = 0; i < 10; i++) { //Quadratic probing to avoid clustering
+    for (int i = 0; i < 15; i++) { //Quadratic probing to avoid clustering
         quadraticProbe = hashValue + i * i;
         if (!table[quadraticProbe].getStatus()) { //Will return false if it's occupied
             if (table[quadraticProbe].getWord() == word)

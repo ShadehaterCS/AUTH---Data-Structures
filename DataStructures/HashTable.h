@@ -9,10 +9,11 @@ class HashTable
 private :
 	int tableSize;
 	double loadFactor;
-	Capsule* table;
+	
 	void calculateLoadFactor() { loadFactor = uniqueWords / tableSize; }
 
 public:
+	Capsule* table;
 	int uniqueWords;
 	int operationsDone;
 	HashTable();
@@ -26,9 +27,6 @@ public:
 
 	Capsule find(string word);
 
-	bool getAndFindRandomWords(string* allWords, int words) {
-		return true;
-	}
 	void show() {
 		std::cout << "Unique words: " << uniqueWords << endl;
 		std::cout << "Total words: " << operationsDone<< endl;

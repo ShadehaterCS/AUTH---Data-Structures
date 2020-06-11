@@ -10,15 +10,16 @@ private:
 	Node* root;
 	int leftNodes;
 	int rightNodes;
+	int nodes;
 
 public:
 	BinaryTree() {
 		root = nullptr;
-		leftNodes = rightNodes = 0;
+		leftNodes = rightNodes = nodes = 0;
 	}
 	BinaryTree(string firstWord) {
 		root = new Node(firstWord);
-		leftNodes = rightNodes = 0;
+		leftNodes = rightNodes = nodes = 0;
 	}
 	~BinaryTree() {
 	}
@@ -30,6 +31,8 @@ public:
 	bool insert(Node* n, string word);
 	bool find(string word);
 	bool find(Node* n, string *word);
+	int ammountOfNodes() { return nodes; }
+
 	void printInOrder();
 };
 

@@ -8,60 +8,66 @@ bool BinaryTree::insert(string word)
 {
 	if (root == nullptr) {
 		root = new Node(word);
-		cout << "Added node at root" << endl;
+		nodes++;
 		return true;
 	}
-	//Checking to see if the word is the root
-	if (word == root->getKey()) {
-		root->getCapsule().increment();
-		return true;
+	else {
+		//Checking to see if the word is in the root
+		if (word == root->getKey()) {
+			root->getCapsule().increment();
+			return true;
+		}
+
+		//Handles insertion after root node, can't get arround it
+		if (word < root->getKey() && root->left == nullptr)
+			return insert(root, word);
+		else if (word > root->getKey() && root->right == nullptr)
+			return insert(root, word);
 	}
-	
-	//Handles insertion at root node, can't get arround it
-	if (word < root->getKey() && root->left == nullptr)
-		return insert(root, word);
-	else if (word > root->getKey() && root->right == nullptr)
-		return insert(root, word);
 	
 	
 	//Recursive calls to the other insert function that can traverse the tree
 
 	if (word < root->getKey()) {
-		insert(root->left, word);
+		return insert(root->left, word);
 	}
 	else {
-		insert(root->right, word);
+		return insert(root->right, word);
 	}
 
-	return true;
+	return false;
 }
 
 bool BinaryTree::insert(Node* n, string word)
 {
 	//Check to see if the word is in the current node
 	if (word == n->getKey()) {
-		n->getCapsule().increment();
-		return true;
-	}
+			n->getCapsule().increment();
+			return true;
+		}
 	//If left is open, we insert it there
 	if (word < n->getKey()) {
-		if (n->left == nullptr) {
+		if (n->left == nullptr) { //Checks if node is open
 			n->left = new Node(word);
+			nodes++;
+			return true;
 		}
 		//Recursion to go deeper
 		else
-			insert(n->left, word);
+			return insert(n->left, word);
 	}
 	//If right is open, we insert it there
 	if (word > n->getKey()) {
 		if (n->right == nullptr) {
 			n->right = new Node(word);
+			nodes++;
+			return true;
 		}
 		//Recursion to go deeper
 		else
-			insert(n->right, word);
+			return insert(n->right, word);
 	}
-	return true;
+	return false;
 }
 
 bool BinaryTree::find(string word)
