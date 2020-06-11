@@ -10,7 +10,7 @@
 
 using  namespace std;
 int main() {
-	ifstream file("small-file og.txt");
+	ifstream file("small-file.txt");
 	if (!file.good()) { //Checks if the file exists
 		cerr << "Error while loading file" << endl;
 		return 679;
@@ -22,7 +22,6 @@ int main() {
 	string token;
 
 	CVector currentLine; //Check documentation for CVector class
-	//TODO Change this to a string[] dynamic so it won't have to do it for each data structure and everything will be faster
 	string* allWords = new string[500000];
 	int ammountOfWords = 0;
 	
@@ -56,5 +55,7 @@ int main() {
 
 	cout << "Hash: " << hashtable->uniqueWords << endl;
 	cout << "BST: " << bst->ammountOfNodes() << endl;
+
+
 	return 0;
 }

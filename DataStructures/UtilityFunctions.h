@@ -10,10 +10,6 @@
 #include "BinaryTree.h"
 class UtilityFunctions
 {
-    static std::string removePunctuation(std::string linestr);
-    static void testHashTable(HashTable* hashtable);
-    static void testBST(BinaryTree* tree);
-    static string* chooseRandomWords(string* allWords);
 };
 
 inline static std::string removePunctuation(std::string linestr) {
@@ -34,6 +30,17 @@ inline static void testHashTable(HashTable* table) {
 inline static void testBST(BinaryTree* tree) {
 
 
+}
+
+inline static void testBSTPrints(BinaryTree* tree) {
+    cout << "Inorder: ";
+    tree->printInOrder(tree->getRoot());
+    cout << endl;
+    cout << "PostOrder: ";
+    tree->printPostOrder(tree->getRoot());
+    cout << endl;
+    cout << "PreOrder: ";
+    tree->printPreOrder(tree->getRoot());
 }
 //Takes the pointer from main that contatins all the words
 //of the text and choose 1000 random words from it

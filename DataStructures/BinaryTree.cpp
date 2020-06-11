@@ -102,10 +102,41 @@ bool BinaryTree::find(Node* n, string* s)
 	}
 	return false;
 }
-
-void BinaryTree::printInOrder()
+//Prints the tree InOrder
+void BinaryTree::printInOrder(Node* n)
 {
+	if (n == nullptr)
+		return;
 
+	printInOrder(n->left);
+
+	cout << n->getKey() <<" ";
+
+	printInOrder(n->right);
+
+	return;
+}
+//Prints the tree PostOrder
+//Always starts at root
+void BinaryTree::printPostOrder(Node* n)
+{
+	if (n == nullptr)
+		return;
+	
+	printPostOrder(n->left);
+	printPostOrder(n->right);
+	cout << n->getKey() << " ";
+	return;
+}
+
+void BinaryTree::printPreOrder(Node* n)
+{
+	if (n == nullptr)
+		return;
+
+	cout << n->getKey() << " ";
+	printPreOrder(n->left);
+	printPreOrder(n->right);
 }
 
 

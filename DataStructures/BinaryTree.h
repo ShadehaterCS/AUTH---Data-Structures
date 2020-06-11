@@ -33,6 +33,8 @@ public:
 	bool find(Node* n, string *word);
 	int ammountOfNodes() { return nodes; }
 
-	void printInOrder();
+	void printInOrder(Node* n);
+	void printPostOrder(Node* n);
+	void printPreOrder(Node* n);
 };
 
