@@ -14,7 +14,7 @@ bool BinaryTree::insert(string word)
 	else {
 		//Checking to see if the word is in the root
 		if (word == root->getKey()) {
-			root->getCapsule().increment();
+			root->getCapsule()->increment();
 			return true;
 		}
 
@@ -42,7 +42,7 @@ bool BinaryTree::insert(Node* n, string word)
 {
 	//Check to see if the word is in the current node
 	if (word == n->getKey()) {
-			n->getCapsule().increment();
+			n->getCapsule()->increment();
 			return true;
 		}
 	//If left is open, we insert it there
@@ -70,37 +70,41 @@ bool BinaryTree::insert(Node* n, string word)
 	return false;
 }
 
-bool BinaryTree::find(string word)
+Capsule* BinaryTree::find(string word)
 {
+	if (isEmpty())
+		return nullptr;
 	Node* n = root;
 	string* s = &word;
 	//First, check root
 	if (word == n->getKey())
-		return true;
+		return n->getCapsule();
 	else {
 		if (word < root->getKey())
 			return find(n->left, s);
 		else
 			return find(n->right, s);
 	}
-	return false;
+	return nullptr;
 }
 
-bool BinaryTree::find(Node* n, string* s)
+Capsule* BinaryTree::find(Node* n, string* s)
 {
 	//Check if the word is at the existing node
+	if (n == nullptr)
+		return nullptr;
 	if (*s == n->getKey())
-		return true;
+		return n->getCapsule();
 	//Check if this is the end of the path
 	if (n->left == nullptr && n->right == nullptr)
-		return false;
+		return nullptr;
 	else {
 		if (*s < root->getKey())
 			return find(n->left, s);
 		else
 			return find(n->right, s);
 	}
-	return false;
+	return nullptr;
 }
 //Prints the tree InOrder
 void BinaryTree::printInOrder(Node* n)

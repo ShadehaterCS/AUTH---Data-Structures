@@ -5,21 +5,22 @@ using namespace std;
 class Node
 {
 public:
-	Capsule key;
+	Capsule* key;
 	Node* left;
 	Node* right;
 	Node* parent;
 
-	string getKey() { return key.getWord(); }
-	Capsule getCapsule() { return key; }
+	string getKey() { return key->getWord(); }
+	Capsule* getCapsule() { return key; }
 	Node() {
+		key = nullptr;
 		left = nullptr;
 		right = nullptr;
 		parent = nullptr;
 	}
 
 	Node(string word) {
-		key = Capsule(word);
+		key = new Capsule(word);
 		left = nullptr;
 		right = nullptr;
 	}

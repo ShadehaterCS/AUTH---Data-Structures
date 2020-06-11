@@ -34,7 +34,9 @@ public:
 	bool getStatus() { return open; }
 	int getTimesFound() { return num; }
 	void show() {
-		cout << word << " " << num << " " << open << endl;
+		if (this == nullptr) //Handles the never to happen time that a capsule pointer tries to use this function while it's a nullpointer
+			return;
+		cout << "|Word: " << word << " " << "|Times found: " << num << " " << "|Status: " << open << endl;
 	}
 };
 

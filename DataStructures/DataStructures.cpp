@@ -56,6 +56,6 @@ int main() {
 	cout << "Hash: " << hashtable->uniqueWords << endl;
 	cout << "BST: " << bst->ammountOfNodes() << endl;
 
-
+	
 	return 0;
 }
