@@ -10,7 +10,6 @@
 
 using  namespace std;
 int main() {
-	//std::ifstream file("inputfile.txt"); //The testing file
 	ifstream file("small-file og.txt");
 	if (!file.good()) { //Checks if the file exists
 		cerr << "Error while loading file" << endl;
@@ -45,14 +44,17 @@ int main() {
 	}
 	cout << "File loaded, word count: "<< ammountOfWords << endl; 
 
-	HashTable h(100000);
-	BinaryTree bst;
+	string* random;
+	random = chooseRandomWords(allWords, ammountOfWords);
+
+	HashTable* hashtable = new HashTable(100000);
+	BinaryTree* bst = new BinaryTree();
 	for (int i = 0; i < ammountOfWords; i++) {
-		bst.insert(allWords[i]);
-		h.insert(allWords[i]);
+		bst->insert(allWords[i]);
+		hashtable->insert(allWords[i]);
 	}
 
-	cout << "Hash: " << h->uniqueWords << endl;
-	cout << "BST: " << bst.ammountOfNodes() << endl;
+	cout << "Hash: " << hashtable->uniqueWords << endl;
+	cout << "BST: " << bst->ammountOfNodes() << endl;
 	return 0;
 }
