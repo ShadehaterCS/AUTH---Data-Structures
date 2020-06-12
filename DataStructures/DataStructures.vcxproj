@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AVLTree.cpp" />
     <ClCompile Include="BinaryTree.cpp" />
     <ClCompile Include="Capsule.cpp" />
     <ClCompile Include="CVector.cpp" />
@@ -155,6 +156,7 @@
     <ClCompile Include="Node.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AVLTree.h" />
     <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="Capsule.h" />
     <ClInclude Include="CVector.h" />

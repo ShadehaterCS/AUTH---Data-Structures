@@ -10,6 +10,7 @@ public:
 	Node* right;
 	Node* parent;
 
+	int height;
 	string getKey() { return key->getWord(); }
 	Capsule* getCapsule() { return key; }
 	Node() {
@@ -17,14 +18,19 @@ public:
 		left = nullptr;
 		right = nullptr;
 		parent = nullptr;
+		height = 0;
 	}
 
 	Node(string word) {
 		key = new Capsule(word);
 		left = nullptr;
 		right = nullptr;
+		parent = nullptr;
+		height = 0;
 	}
+	~Node() {
 
+	}
 	void setLeft(Node* n) {
 		left = n;
 	}

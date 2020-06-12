@@ -5,6 +5,7 @@
 //Custom classes
 #include "HashTable.h"
 #include "BinaryTree.h"
+#include "AVLTree.h"
 #include "CVector.h"
 #include "UtilityFunctions.h"
 
@@ -48,14 +49,16 @@ int main() {
 
 	HashTable* hashtable = new HashTable(100000);
 	BinaryTree* bst = new BinaryTree();
+	AVLTree* avl = new AVLTree();
 	for (int i = 0; i < ammountOfWords; i++) {
 		bst->insert(allWords[i]);
 		hashtable->insert(allWords[i]);
+		avl->insert(new Node(allWords[i]), &allWords[i]);
 	}
 
 	cout << "Hash: " << hashtable->uniqueWords << endl;
 	cout << "BST: " << bst->ammountOfNodes() << endl;
 
-	
+	avl->printPreOrder(avl->root);
 	return 0;
 }

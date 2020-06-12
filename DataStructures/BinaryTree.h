@@ -8,18 +8,16 @@ class BinaryTree
 {
 private:
 	Node* root;
-	int leftNodes;
-	int rightNodes;
 	int nodes;
 
 public:
 	BinaryTree() {
 		root = nullptr;
-		leftNodes = rightNodes = nodes = 0;
+		nodes = 0;
 	}
 	BinaryTree(string firstWord) {
 		root = new Node(firstWord);
-		leftNodes = rightNodes = nodes = 0;
+		nodes = 0;
 	}
 	~BinaryTree() {
 	}
