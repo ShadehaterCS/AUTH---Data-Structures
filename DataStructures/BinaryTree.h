@@ -27,8 +27,10 @@ public:
 
 	bool insert(string word);
 	bool insert(Node* n, string word);
-	Capsule* find(string word);
-	Capsule* find(Node* n, string *word);
+	Node* find(string word);
+	Node* find(Node* n, string *word);
+
+	bool deleteWord(string word);
 	int ammountOfNodes() { return nodes; }
 
 	void printInOrder(Node* n);

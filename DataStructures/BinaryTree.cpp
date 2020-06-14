@@ -70,7 +70,7 @@ bool BinaryTree::insert(Node* n, string word)
 	return false;
 }
 
-Capsule* BinaryTree::find(string word)
+Node* BinaryTree::find(string word)
 {
 	if (isEmpty())
 		return nullptr;
@@ -78,7 +78,7 @@ Capsule* BinaryTree::find(string word)
 	string* s = &word;
 	//First, check root
 	if (word == n->getKey())
-		return n->getCapsule();
+		return n;
 	else {
 		if (word < root->getKey())
 			return find(n->left, s);
@@ -88,13 +88,11 @@ Capsule* BinaryTree::find(string word)
 	return nullptr;
 }
 
-Capsule* BinaryTree::find(Node* n, string* s)
+Node* BinaryTree::find(Node* n, string* s)
 {
 	//Check if the word is at the existing node
-	if (n == nullptr)
-		return nullptr;
 	if (*s == n->getKey())
-		return n->getCapsule();
+		return n;
 	//Check if this is the end of the path
 	if (n->left == nullptr && n->right == nullptr)
 		return nullptr;
@@ -142,5 +140,47 @@ void BinaryTree::printPreOrder(Node* n)
 	printPreOrder(n->left);
 	printPreOrder(n->right);
 }
+//Deletes a node from the tree
+//Parent node does what?? !
+//If the node has a right child, that goes in its place and the left child becomes the left child of it
+//If there is only a left child, that takes its place
+bool BinaryTree::deleteWord(string word) {
+	Node* n = find(word); //will return nullptr if the word does not exist
+	if (n == nullptr) {
+		cerr << "Word '" << word << "' not found." << endl;
+		return false;
+	}
 
+	//If the node is a leaf node
+	if (n->left == nullptr && n->right == nullptr) {
+		if (n != root) {
+
+		}
+		else
+			root = nullptr;
+		delete n;
+	}
+	
+	bool isLeft = n->parent->getKey() < n->getKey();
+	if (n->left == nullptr && n->right == nullptr) { 
+		if (isLeft)
+			n->parent->left = nullptr;
+		else
+			n->parent->right = nullptr;
+		return true;
+	}
+
+	Node* changing;
+
+	if (n->right != nullptr) { //if there are two child nodes
+		if (n->left != nullptr)
+			n->right->left = n->left;
+
+		n->right->parent = n->parent;
+		if (n->getKey() < n->parent->getKey())
+			n->parent->left = n->right;
+	}
+
+	return false;
+}
 
