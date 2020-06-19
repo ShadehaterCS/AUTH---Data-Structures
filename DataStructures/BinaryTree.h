@@ -36,5 +36,7 @@ public:
 	void printInOrder(Node* n);
 	void printPostOrder(Node* n);
 	void printPreOrder(Node* n);
+
+	Node* getInOrderSuccessor(Node* n);
 };
 

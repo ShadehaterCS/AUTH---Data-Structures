@@ -8,6 +8,7 @@ bool BinaryTree::insert(string word)
 {
 	if (root == nullptr) {
 		root = new Node(word);
+		root->parent = nullptr;
 		nodes++;
 		return true;
 	}
@@ -49,6 +50,7 @@ bool BinaryTree::insert(Node* n, string word)
 	if (word < n->getKey()) {
 		if (n->left == nullptr) { //Checks if node is open
 			n->left = new Node(word);
+			n->left->parent = n;
 			nodes++;
 			return true;
 		}
@@ -60,6 +62,7 @@ bool BinaryTree::insert(Node* n, string word)
 	if (word > n->getKey()) {
 		if (n->right == nullptr) {
 			n->right = new Node(word);
+			n->right->parent = n;
 			nodes++;
 			return true;
 		}
@@ -140,8 +143,20 @@ void BinaryTree::printPreOrder(Node* n)
 	printPreOrder(n->left);
 	printPreOrder(n->right);
 }
+
+//Returns the minimum value of the right subtree
+//First, we step into the right subtree and loop over all the left nodes of that until we hit a nullptr
+Node* BinaryTree::getInOrderSuccessor(Node* n)
+{
+	Node* changing = n->right;
+	if(changing!=nullptr)
+		while (changing->left != nullptr) {
+			changing = changing->left;
+		}
+	return changing;
+}
+
 //Deletes a node from the tree
-//Parent node does what?? !
 //If the node has a right child, that goes in its place and the left child becomes the left child of it
 //If there is only a left child, that takes its place
 bool BinaryTree::deleteWord(string word) {
@@ -150,35 +165,34 @@ bool BinaryTree::deleteWord(string word) {
 		cerr << "Word '" << word << "' not found." << endl;
 		return false;
 	}
-
-	//If the node is a leaf node
-	if (n->left == nullptr && n->right == nullptr) {
-		if (n != root) {
-
-		}
-		else
-			root = nullptr;
-		delete n;
+	//Node containing word is root
+	//Get InOrder Successor, copy that to the root node, delete node from tree
+	if (n == root) {
+		Node* changing = getInOrderSuccessor(root);
+		root->key = changing->getCapsule();
+		changing->parent->left = nullptr;
+		delete changing;
 	}
-	
+
+	//Node containg word has children
+	//Find InOrderSuccessor and copy it to that, delete that node
+	if (n->left != nullptr || n->right != nullptr) {
+		Node* changing = getInOrderSuccessor(n);
+		n->key = changing->getCapsule();
+		
+	}
+
+	//Node containing word is leaf node
+	//bool isLeft determines if it's a left leaf or right
 	bool isLeft = n->parent->getKey() < n->getKey();
+
 	if (n->left == nullptr && n->right == nullptr) { 
 		if (isLeft)
 			n->parent->left = nullptr;
 		else
 			n->parent->right = nullptr;
+		delete n;
 		return true;
-	}
-
-	Node* changing;
-
-	if (n->right != nullptr) { //if there are two child nodes
-		if (n->left != nullptr)
-			n->right->left = n->left;
-
-		n->right->parent = n->parent;
-		if (n->getKey() < n->parent->getKey())
-			n->parent->left = n->right;
 	}
 
 	return false;
