@@ -20,14 +20,7 @@ public:
 	HashTable(int size);
 	~HashTable();
 	long long hash(string s);
-
 	bool insert(string s);
-
-	Capsule find(string word);
-
-	void show() {
-		std::cout << "Unique words: " << uniqueWords << endl;
-		std::cout << "Total words: " << operationsDone<< endl;
-	}
+	Capsule* find(string word);
 };
 

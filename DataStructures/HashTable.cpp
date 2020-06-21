@@ -40,21 +40,19 @@ bool HashTable::insert(string word)
             table[quadraticProbe] = Capsule(word);
             uniqueWords++;
             operationsDone++;
-            calculateLoadFactor();
             return true;
         }
         else
             if (table[quadraticProbe].getWord() == word){
                 table[quadraticProbe].increment();
                 operationsDone++;
-                calculateLoadFactor();
                 return true;
             }
     }
     return false;
 }
 
-Capsule HashTable::find(string word) //If it exists, returns the capsule object containing the word the program needs.
+Capsule* HashTable::find(string word) //If it exists, returns the capsule object containing the word the program needs.
 {
     long long hashValue = hash(word);
     long quadraticProbe;
@@ -62,8 +60,8 @@ Capsule HashTable::find(string word) //If it exists, returns the capsule object 
         quadraticProbe = hashValue + i * i;
         if (!table[quadraticProbe].getStatus()) { //Will return false if it's occupied
             if (table[quadraticProbe].getWord() == word)
-                return table[quadraticProbe];
+                return &table[quadraticProbe];
         }
     }
-    return Capsule();
+    return nullptr;
 }

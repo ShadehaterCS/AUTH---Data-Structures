@@ -4,9 +4,6 @@
 #include "UtilityFunctions.h"
 //This class is meant to act as a dynamic array to hold a tokenized string.
 //In other words, a container or a vector
-//Hmm there already exists a vector. But we can't use it because reasons????
-//STL is bad and we can't use vector<T> okkokkok
-
 using namespace std;
 class CVector 
 {
@@ -59,7 +56,6 @@ public:
 		delete[] arr;
 		arr = new string[50];
 		current = length = 0;
-		
 	}
 
 };

@@ -38,6 +38,5 @@ public:
 	void printPreOrder(Node* n);
 
 	Node* findMin(Node* root);
-	Node* getInOrderSuccessor(Node* n);
 };
 

@@ -3,7 +3,6 @@
 
 using namespace std;
 
-//This function is only for the root word
 bool BinaryTree::insert(string word)
 {
 	if (root == nullptr) {
@@ -80,7 +79,6 @@ Node* BinaryTree::find(string word)
 		return nullptr;
 	Node* n = root;
 	string* s = &word;
-	//First, check root
 	if (word == n->getKey())
 		return n;
 	else {
@@ -156,19 +154,6 @@ Node* BinaryTree::findMin(Node* root)
 
 	return nullptr;
 }
-
-//Returns the minimum value of the right subtree
-//First, we step into the right subtree and loop over all the left nodes of that until we hit a nullptr
-Node* BinaryTree::getInOrderSuccessor(Node* n)
-{
-	Node* changing = n->right;
-	if(changing!=nullptr)
-		while (changing->left != nullptr) {
-			changing = changing->left;
-		}
-	return changing;
-}
-
 //Deletes a node from the tree
 //If the node has a right child, that goes in its place and the left child becomes the left child of it
 //If there is only a left child, that takes its place

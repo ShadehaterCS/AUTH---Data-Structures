@@ -22,9 +22,7 @@ public:
 		num = 1; //Since it's the first time it is seen
 	}
 
-	~Capsule() {
-		;
-	}
+	~Capsule(){}
 
 	string getWord() { return word; }
 	void setWord(string s) { word = s; }

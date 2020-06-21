@@ -10,7 +10,7 @@
 
 using  namespace std;
 int main() {
-	ifstream file("small-file.txt");
+	ifstream file("small-file og.txt");
 	if (!file.good()) { //Checks if the file exists
 		cerr << "Error while loading file" << endl;
 		return 679;
@@ -50,12 +50,9 @@ int main() {
 	BinaryTree* bst = new BinaryTree();
 	AVLTree* avl = new AVLTree();
 
+	testHashTable(hashtable, ammountOfWords, allWords, random);
+	testBST(bst, ammountOfWords, allWords, random);
+	testAVL(avl, ammountOfWords, allWords, random);
 
-	//testHashTable(hashtable, ammountOfWords, allWords, random);
-	//testBST(bst, ammountOfWords, allWords, random);
-
-	for (int i = 0; i < ammountOfWords; i++)
-		avl->insert(avl->root, &allWords[i]);
-	avl->printPreOrder(avl->root);
 	return 0;
 }

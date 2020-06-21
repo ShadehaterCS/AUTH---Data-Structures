@@ -4,38 +4,33 @@
 class AVLTree
 {
 private:
-	int nodes;
 
 public:
+	int nodes;
+	int getHeight(Node* n) { return (n == nullptr ? -1 : n->height); }
+	int max(int left, int right){ return (left >= right) ? left : right; }
+
 	Node* root;
 	AVLTree();
-	~AVLTree() {
+	~AVLTree() {}
+	Node* find(Node* root, string* word);
+	Node* insert(string *word, Node* n);
+	Node* deleteNode(string* word, Node* n);
+	Node* singleRightRotate(Node* n);
+	Node* singleLeftRotate(Node* n);
 
-	}
-
-	bool rotateRight(Node* n);
-	bool rotateLeft(Node* n);
-
-	bool insert(Node* node, string *word);
-
-	int max(int a, int b) {
-		return (a > b) ? a : b;
-	}
 	int getBalance(Node* n) {
 		if (n == nullptr)
 			return 0;
-		return height(n->left) - height(n->right);
+		return getHeight(n->left) - getHeight(n->right);
 	}
-	int height(Node* n) {
-		if (n == nullptr)
-			return 0;
-		return n->height;
-	}
+	Node* findMin(Node* n);
+	Node* findMax(Node* n);
 
 	void printPreOrder(Node* root);
 	void printInOrder(Node* root);
 	void printPostOrder(Node* root);
 
-	Capsule* find(Node* root, string* word);
+	
 };
 
