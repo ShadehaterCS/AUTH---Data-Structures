@@ -7,10 +7,10 @@ using namespace std;
 class BinaryTree
 {
 private:
-	Node* root;
 	int nodes;
 
 public:
+	Node* root;
 	BinaryTree() {
 		root = nullptr;
 		nodes = 0;
@@ -37,6 +37,7 @@ public:
 	void printPostOrder(Node* n);
 	void printPreOrder(Node* n);
 
+	Node* findMin(Node* root);
 	Node* getInOrderSuccessor(Node* n);
 };
 

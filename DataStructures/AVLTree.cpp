@@ -7,7 +7,7 @@ AVLTree::AVLTree()
 	nodes = 0;
 }
 
-Node* AVLTree::rotateRight(Node* n)
+bool AVLTree::rotateRight(Node* n)
 {
 	Node* a = n->left;
 	Node* b = n->right;
@@ -19,10 +19,10 @@ Node* AVLTree::rotateRight(Node* n)
 	n->height = max(height(n->left), height(n->right)) + 1;
 	a->height = max(height(a->left), height(a->right)) + 1;
 
-	return a;
+	return true;
 }
 
-Node* AVLTree::rotateLeft(Node* n)
+bool AVLTree::rotateLeft(Node* n)
 {
 	Node* a = n->right;
 	Node* b = a->left;
@@ -34,22 +34,21 @@ Node* AVLTree::rotateLeft(Node* n)
 	n->height = max(height(n->left), height(n->right)) + 1;
 	b->height = max(height(b->left), height(b->right)) + 1;
 
-	return b;
+	return true;
 }
 
-//This is something
-Node* AVLTree::insert(Node* n, string *word)
+bool AVLTree::insert(Node* n, string *word)
 {
-	if (root == nullptr)
-		root = new Node(*word);
-	if (n == nullptr)
-		return new Node(*word);
+	if (n == nullptr) {
+		n = new Node(*word);
+		return true;
+	}
 	
 	if (*word < n->getKey())
-		n->left = insert(n->left, word);
+		insert(n->left, word);
 	else if (*word > n->getKey())
-		n->right = insert(n->right, word);
-	else
+		insert(n->right, word);
+	else //Word is the one contained in Node n, increment it
 		n->getCapsule()->increment();
 
 	n->height = 1 + max(height(n->left), height(n->right));
@@ -63,12 +62,12 @@ Node* AVLTree::insert(Node* n, string *word)
 		return rotateLeft(n);
 
 	if (balance > 1 && *word > n->left->getKey()) {
-		n->left = rotateLeft(n->left);
+		rotateLeft(n->left);
 		return rotateRight(n);
 	}
 
 	if (balance < -1 && *word < n->right->getKey()) {
-		n->right = rotateRight(n->right);
+		rotateRight(n->right);
 		return rotateLeft(n);
 	}
 

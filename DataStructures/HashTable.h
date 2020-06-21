@@ -21,23 +21,13 @@ public:
 	~HashTable();
 	long long hash(string s);
 
-	bool exists();
 	bool insert(string s);
-	bool resizeTable();
 
 	Capsule find(string word);
 
 	void show() {
 		std::cout << "Unique words: " << uniqueWords << endl;
 		std::cout << "Total words: " << operationsDone<< endl;
-	}
-	void evaluate() {
-		string temp;
-		for (int i = 0; i < tableSize; i++) {
-			temp = table[i].getWord();
-			if (!temp.empty())
-				std::cout << temp << " "<< table[i].getTimesFound() << endl;
-		}
 	}
 };
 

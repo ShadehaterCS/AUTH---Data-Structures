@@ -30,11 +30,6 @@ long long HashTable::hash(string s)
     return abs(hash_value % tableSize);
 }
 
-bool HashTable::exists()
-{
-    return false;
-}
-
 bool HashTable::insert(string word)
 {
     long long hashValue = hash(word);

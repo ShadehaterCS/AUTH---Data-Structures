@@ -5,15 +5,18 @@ class AVLTree
 {
 private:
 	int nodes;
+
 public:
 	Node* root;
 	AVLTree();
+	~AVLTree() {
 
+	}
 
-	Node* rotateRight(Node* n);
-	Node* rotateLeft(Node* n);
+	bool rotateRight(Node* n);
+	bool rotateLeft(Node* n);
 
-	Node* insert(Node* node, string *word);
+	bool insert(Node* node, string *word);
 
 	int max(int a, int b) {
 		return (a > b) ? a : b;

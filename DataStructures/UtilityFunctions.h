@@ -3,11 +3,13 @@
 #include <iostream>
 #include <sstream> //std::stringstream
 #include <ctime>
+#include <chrono>
 
 #include "HashTable.h"
 #include "CVector.h"
 #include "CVector.h"
 #include "BinaryTree.h"
+#include "AVLTree.h"
 class UtilityFunctions
 {
 };
@@ -23,25 +25,62 @@ inline static std::string removePunctuation(std::string linestr) {
     return linestr;
 }
 
-inline static void testHashTable(HashTable* table) {
+inline static void testHashTable(HashTable* table, int ammountOfWords, string* allWords, string* randomWords) {
+    cout << "------------------------------------------------" << endl;
+    cout << "Hashtable Testing" << endl;
+    auto start = chrono::high_resolution_clock::now();
+    for (int i = 0; i < ammountOfWords; i++) {
+        table->insert(allWords[i]);
+    }
+    auto end = chrono::high_resolution_clock::now();
+    cout << "Unique words: " << table->uniqueWords << endl;
+    cout << "Insertion time: " << chrono::duration_cast<chrono::nanoseconds>(end - start).count() << " ns" << ", " << chrono::duration_cast<chrono::milliseconds>(end - start).count() << " ms" << endl;
+    cout << "Average insertion time in nanoseconds: " << chrono::duration_cast<chrono::nanoseconds>(end - start).count() / ammountOfWords << " ns" << endl;
+    start = chrono::high_resolution_clock::now();
     
+    for (int i = 0; i < 1000; i++) {
+        table->find(randomWords[i]);
+    }
+    end = chrono::high_resolution_clock::now();
+    cout << "Searching time: " << chrono::duration_cast<chrono::nanoseconds>(end - start).count() << " ns" << ", " << chrono::duration_cast<chrono::milliseconds>(end - start).count() << " ms" << endl;
+    cout << "Average searching time in nanoseconds: " << chrono::duration_cast<chrono::nanoseconds>(end - start).count() / 1000 << " ns" << endl;
+
+    cout << "------------------------------------------------" << endl;
 }
 
-inline static void testBST(BinaryTree* tree) {
+inline static void testBST(BinaryTree* tree, int ammountOfWords, string* allWords, string* randomWords) {
+    cout << "------------------------------------------------" << endl;
+    cout << "BST Testing" << endl;
+    auto start = chrono::high_resolution_clock::now();
+    for (int i = 0; i < ammountOfWords; i++) {
+        tree->insert(allWords[i]);
+    }
+    auto end = chrono::high_resolution_clock::now();
+    cout << "Unique words: " << tree->ammountOfNodes() << endl;
+    cout << "Insertion time: " << chrono::duration_cast<chrono::nanoseconds>(end - start).count() << " ns" << ", " << chrono::duration_cast<chrono::milliseconds>(end - start).count() << " ms" <<endl;
+    cout << "Average insertion time in nanoseconds: " << chrono::duration_cast<chrono::nanoseconds>(end - start).count() / ammountOfWords << " ns" << endl;
+    start = chrono::high_resolution_clock::now();
+    for (int i = 0; i < 1000; i++) {
+        tree->find(randomWords[i]);
+    }
+    end = chrono::high_resolution_clock::now();
+    cout << "Searching time: " << chrono::duration_cast<chrono::nanoseconds>(end - start).count() << " ns" << ", " << chrono::duration_cast<chrono::milliseconds>(end - start).count() << " ms" << endl;
+    cout << "Average searching time in nanoseconds: " << chrono::duration_cast<chrono::nanoseconds>(end - start).count() / 1000 << " ns" << endl;
 
+    start = chrono::high_resolution_clock::now();
+    for (int i = 0; i < 1000; i++) {
+        tree->deleteWord(randomWords[i]);
+    }
+    end = chrono::high_resolution_clock::now();
+    cout << "Deletion time: " << chrono::duration_cast<chrono::nanoseconds>(end - start).count() << " ns" << ", " << chrono::duration_cast<chrono::milliseconds>(end - start).count() << "ms" << endl;
+    cout << "Average deletion time in nanoseconds: " << chrono::duration_cast<chrono::nanoseconds>(end - start).count() / 1000 << " ns" << endl;
+}
+
+inline static void testAVL(AVLTree* tree) {
 
 }
 
-inline static void testBSTPrints(BinaryTree* tree) {
-    cout << "Inorder: ";
-    tree->printInOrder(tree->getRoot());
-    cout << endl;
-    cout << "PostOrder: ";
-    tree->printPostOrder(tree->getRoot());
-    cout << endl;
-    cout << "PreOrder: ";
-    tree->printPreOrder(tree->getRoot());
-}
+
 //Takes the pointer from main that contatins all the words
 //of the text and choose 1000 random words from it
 inline static string* chooseRandomWords(string* allWords, int ammount) {

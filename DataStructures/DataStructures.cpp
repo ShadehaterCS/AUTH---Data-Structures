@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <iterator>
-#include <chrono>
 //Custom classes
 #include "HashTable.h"
 #include "BinaryTree.h"
@@ -50,15 +49,13 @@ int main() {
 	HashTable* hashtable = new HashTable(100000);
 	BinaryTree* bst = new BinaryTree();
 	AVLTree* avl = new AVLTree();
-	for (int i = 0; i < ammountOfWords; i++) {
-		bst->insert(allWords[i]);
-		hashtable->insert(allWords[i]);
-		avl->insert(new Node(allWords[i]), &allWords[i]);
-	}
 
-	cout << "Hash: " << hashtable->uniqueWords << endl;
-	cout << "BST: " << bst->ammountOfNodes() << endl;
 
+	//testHashTable(hashtable, ammountOfWords, allWords, random);
+	//testBST(bst, ammountOfWords, allWords, random);
+
+	for (int i = 0; i < ammountOfWords; i++)
+		avl->insert(avl->root, &allWords[i]);
 	avl->printPreOrder(avl->root);
 	return 0;
 }
